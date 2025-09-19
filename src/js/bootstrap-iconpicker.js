@@ -110,7 +110,7 @@
         var op = this.options;
         var search = op.table.find('.search-control').val();
         var icons = [];
-        if(op.iconsetVersion != 'lastest' && typeof Iconpicker.ICONSET[op.iconset].allVersions != 'undefined'){
+        if(op.iconsetVersion != 'latest' && typeof Iconpicker.ICONSET[op.iconset].allVersions != 'undefined'){
             $.each(Iconpicker.ICONSET[op.iconset].allVersions, function(i, v){
                 if(op.iconsetVersion == v.version){
                     icons = v.icons;
