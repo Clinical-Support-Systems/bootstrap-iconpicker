@@ -1,6 +1,6 @@
 {
   "name": "css-bootstrap-iconpicker",
-  "version": "1.12.1",
+  "version": "1.12.2",
   "homepage": "https://clinical-support-systems.github.com/bootstrap-iconpicker",
   "author": {
     "name": "Kori Francis",
@@ -24,6 +24,7 @@
   },
   "scripts": {
     "browser": "index.html",
-    "verify:fa7": "node util/verify-fa7.js"
+    "verify:fa7": "node util/verify-fa7.js",
+    "verify:fa6": "node util/verify-fa6.js"
   }
 }
