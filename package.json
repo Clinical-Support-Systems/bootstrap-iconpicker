@@ -1,16 +1,16 @@
 {
-  "name": "bootstrap-iconpicker",
-  "version": "1.10.0",
-  "homepage": "https://victor-valencia.github.com/bootstrap-iconpicker",
+  "name": "css-bootstrap-iconpicker",
+  "version": "1.11.0",
+  "homepage": "https://clinical-support-systems.github.com/bootstrap-iconpicker",
   "author": {
-    "name": "Victor Valencia Rico",
-    "email": "valencia_vik@hotmail.com.com",
-    "url": "https://victor-valencia.github.com/"
+    "name": "Kori Francis",
+    "email": "kfrancis@clinicalsupportsystems.com",
+    "url": "https://github.com/kfrancis"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/victor-valencia/bootstrap-iconpicker.git"
+    "url": "https://github.com/Clinical-Support-Systems/bootstrap-iconpicker.git"
   },
   "devDependencies": {
     "chai": "^4.1.0",
