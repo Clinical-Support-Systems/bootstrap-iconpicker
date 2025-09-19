@@ -26,7 +26,7 @@
 
     // ICONPICKER VERSION
     // ==============================
-    Iconpicker.VERSION = '1.10.0';
+    Iconpicker.VERSION = '1.11.0';
 
     // ICONPICKER ICONSET_EMPTY
     // ==============================
@@ -44,6 +44,7 @@
         flagicon: $.iconset_flagicon || Iconpicker.ICONSET_EMPTY,
         fontawesome4: $.iconset_fontawesome_4 || Iconpicker.ICONSET_EMPTY,
         fontawesome5: $.iconset_fontawesome_5 || Iconpicker.ICONSET_EMPTY,
+        fontawesome6: $.iconset_fontawesome_6 || Iconpicker.ICONSET_EMPTY,
         glyphicon: $.iconset_glyphicon || Iconpicker.ICONSET_EMPTY,
         ionicon: $.iconset_ionicon || Iconpicker.ICONSET_EMPTY,
         mapicon: $.iconset_mapicon || Iconpicker.ICONSET_EMPTY,
@@ -62,8 +63,8 @@
         arrowPrevIconClass: 'fas fa-arrow-left',
         cols: 4,
         icon: '',
-        iconset: 'fontawesome5',
-        iconsetVersion: 'lastest',
+        iconset: 'fontawesome6',
+        iconsetVersion: 'latest',
         header: true,
         labelHeader: '{0} / {1}',
         footer: true,
@@ -115,7 +116,7 @@
         var op = this.options;
         var search = op.table.find('.search-control').val();
         var icons = [];
-        if(op.iconsetVersion != 'lastest' && typeof Iconpicker.ICONSET[op.iconset].allVersions != 'undefined'){
+        if(op.iconsetVersion != 'latest' && typeof Iconpicker.ICONSET[op.iconset].allVersions != 'undefined'){
             $.each(Iconpicker.ICONSET[op.iconset].allVersions, function(i, v){
                 if(op.iconsetVersion == v.version){
                     icons = v.icons;
