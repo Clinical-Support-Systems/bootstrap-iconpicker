@@ -4,7 +4,7 @@
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/clinical-support-systems/bootstrap-iconpicker)
 ![GitHub License](https://img.shields.io/github/license/clinical-support-systems/bootstrap-iconpicker)
 
-# [Bootstrap-Iconpicker v1.12.0]([http://clinical-support-systems.github.io/bootstrap-iconpicker](https://clinical-support-systems.github.io/bootstrap-iconpicker/))
+# [Bootstrap-Iconpicker v1.12.1]([http://clinical-support-systems.github.io/bootstrap-iconpicker](https://clinical-support-systems.github.io/bootstrap-iconpicker/))
 ![Iconpicker](bootstrap-iconpicker_4x.png)
 
 A simple iconpicker for Bootstrap 3.x and 4.x.
