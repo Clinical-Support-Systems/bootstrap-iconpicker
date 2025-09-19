@@ -6,7 +6,7 @@
 [![Issues](http://img.shields.io/github/issues/Clinical-Support-Systems/bootstrap-iconpicker.svg)](https://github.com/Clinical-Support-Systems/bootstrap-iconpicker/issues?q=is%3Aopen)
 [![Issues](http://img.shields.io/badge/license-MIT-red.svg)](https://github.com/Clinical-Support-Systems/bootstrap-iconpicker/blob/master/LICENSE)
 
-# [Bootstrap-Iconpicker v1.10.0]([http://victor-valencia.github.io/bootstrap-iconpicker](https://clinical-support-systems.github.io/bootstrap-iconpicker/))
+# [Bootstrap-Iconpicker v1.11.0]([http://clinical-support-systems.github.io/bootstrap-iconpicker](https://clinical-support-systems.github.io/bootstrap-iconpicker/))
 ![Iconpicker](bootstrap-iconpicker_4x.png)
 
 A simple iconpicker for Bootstrap 3.x and 4.x.
@@ -97,10 +97,10 @@ And constructed with the following guidelines:
 For more information on SemVer, please visit <http://semver.org/>.
 
 ## Authors
-(Original) @[victor-valencia](https://github.com/victor-valencia)
+(Original) @[clinical-support-systems](https://github.com/clinical-support-systems)
 
 ## Contributors
-@[victor-valencia](https://github.com/victor-valencia), @[promatik](https://github.com/promatik), @[jwhitfieldseed](https://github.com/jwhitfieldseed), @[crlcu](https://github.com/crlcu), @[michaelbilcot](https://github.com/michaelbilcot), @[joews](https://github.com/joews), @[s-belichenko-sold](https://github.com/s-belichenko-sold), @[mahmoud-asadi](https://github.com/mahmoud-asadi), @[ibrahimyilmaz7](https://github.com/ibrahimyilmaz7), @[kfrancis](https://github.com/kfrancis)
+@[clinical-support-systems](https://github.com/clinical-support-systems), @[promatik](https://github.com/promatik), @[jwhitfieldseed](https://github.com/jwhitfieldseed), @[crlcu](https://github.com/crlcu), @[michaelbilcot](https://github.com/michaelbilcot), @[joews](https://github.com/joews), @[s-belichenko-sold](https://github.com/s-belichenko-sold), @[mahmoud-asadi](https://github.com/mahmoud-asadi), @[ibrahimyilmaz7](https://github.com/ibrahimyilmaz7), @[kfrancis](https://github.com/kfrancis)
 
 ## License
 Licensed under [the MIT license](LICENSE).
