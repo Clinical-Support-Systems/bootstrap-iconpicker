@@ -1,6 +1,5 @@
 [![Build Status](https://travis-ci.org/Clinical-Support-Systems/bootstrap-iconpicker.svg?branch=master)](https://travis-ci.org/Clinical-Support-Systems/bootstrap-iconpicker)
 [![npm](http://img.shields.io/npm/v/bootstrap-iconpicker.svg)](https://npmjs.org/package/bootstrap-iconpicker)
-[![Bower](http://img.shields.io/bower/v/bootstrap-iconpicker.svg)](http://bower.io/search/?q=bootstrap-iconpicker)
 [![Release](http://img.shields.io/github/release/Clinical-Support-Systems/bootstrap-iconpicker.svg)](https://github.com/Clinical-Support-Systems/bootstrap-iconpicker/releases)
 [![Tag](http://img.shields.io/github/tag/Clinical-Support-Systems/bootstrap-iconpicker.svg)](https://github.com/Clinical-Support-Systems/bootstrap-iconpicker/tags)
 [![Issues](http://img.shields.io/github/issues/Clinical-Support-Systems/bootstrap-iconpicker.svg)](https://github.com/Clinical-Support-Systems/bootstrap-iconpicker/issues?q=is%3Aopen)
@@ -34,7 +33,6 @@ Several quick-start options are available:
 
 - Download the latest release: [![Tag](http://img.shields.io/github/release/Clinical-Support-Systems/bootstrap-iconpicker.svg)](https://github.com/Clinical-Support-Systems/bootstrap-iconpicker/archive/v1.10.0.zip).
 - Clone the repo: `git clone https://github.com/Clinical-Support-Systems/bootstrap-iconpicker.git`.
-- Install with [Bower](http://bower.io): `bower install bootstrap-iconpicker`.
 - Install with [npm](https://www.npmjs.com): `npm install bootstrap-iconpicker`.
 
 ## CDN
