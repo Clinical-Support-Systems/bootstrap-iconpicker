@@ -155,6 +155,42 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-concat');
 
+    // Build/publish tasks.
+    // 'build' runs the full pipeline to produce files in dist/
+    grunt.registerTask('build', [
+        'cssmin',
+        'uglify:main',
+        'uglify:iconset',
+        'concat:mainCSS',
+        'concat:mainCSSMin',
+        'concat:mainJS',
+        'concat:mainJSMin',
+        'concat:iconsetJS',
+        'concat:iconsetJSMin',
+        'concat:bundleJSMin',
+        'cleanTemp'
+    ]);
+
+    // 'publish' is an alias for 'build' kept for clarity in release scripts
+    grunt.registerTask('publish', ['build']);
+
+    // Custom clean task to remove temporary build artifacts without external plugin
+    grunt.registerTask('cleanTemp', 'Remove temp build artifacts', function() {
+        var done = this.async();
+        try {
+            if (grunt.file.exists('temp')) {
+                grunt.file.delete('temp', { force: true });
+                grunt.log.writeln('Removed temp/ folder');
+            } else {
+                grunt.log.writeln('No temp/ folder to remove');
+            }
+            done();
+        } catch (e) {
+            grunt.log.error(e);
+            done(false);
+        }
+    });
+
     // Default task(s).
     grunt.registerTask('default', ['watch']);
 

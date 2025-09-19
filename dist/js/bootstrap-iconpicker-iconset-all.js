@@ -1,8 +1,8 @@
 /*!========================================================================
-* File: bootstrap-iconpicker-iconset.js v1.10.0 by @victor-valencia
-* https://victor-valencia.github.com/bootstrap-iconpicker
+* File: bootstrap-iconpicker-iconset.js v1.11.0 by @victor-valencia
+* https://clinical-support-systems.github.com/bootstrap-iconpicker
 * ========================================================================
-* Copyright 2013-2025 Victor Valencia Rico.
+* Copyright 2013-2025 Kori Francis.
 * Licensed under MIT license.
 * https://github.com/victor-valencia/bootstrap-iconpicker/blob/master/LICENSE
 * ========================================================================
