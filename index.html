@@ -81,13 +81,6 @@ and open the template in the editor.
     </head>
     <body>
 
-        <!-- Begin :: Donate Form -->
-      	<form id="formDonate" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-      	    <input type="hidden" name="cmd" value="_s-xclick">
-      	    <input type="hidden" name="hosted_button_id" value="XFTVFLZRPACGN">
-      	</form>
-      	<!-- End :: Donate Form -->
-
         <div class="container">
 
             <div class="text-center text-primary">
@@ -103,7 +96,7 @@ and open the template in the editor.
             <div class="row text-center" style="padding-top: 20px;">
                <div class="col-md-12">
                     <div class="btn-group buttons-menu-container">
-                        <a id="btnGithub" class="btn btn-primary" href="https://github.com/victor-valencia/bootstrap-iconpicker" target="_blank" role="button">
+                        <a id="btnGithub" class="btn btn-primary" href="https://github.com/Clinical-Support-Systems/bootstrap-iconpicker" target="_blank" role="button">
                             <i class="fab fa-github-alt fa-2x"></i></br>
                             View on Git Hub</br>
                             <span>Lastest version ({0})</span>
@@ -121,34 +114,34 @@ and open the template in the editor.
             <div class="row text-center" style="padding-top: 20px;">
                <div class="col-md-12">
                     <div class="btn-group buttons-menu-container">
-                        <a class="btn btn-default bg-gray border" href="https://github.com/victor-valencia/bootstrap-iconpicker/stargazers" target="_blank" role="button">
+                        <a class="btn btn-default bg-gray border" href="https://github.com/Clinical-Support-Systems/bootstrap-iconpicker/stargazers" target="_blank" role="button">
                             <i class="octicon octicon-star"></i> Stars
                         </a>
-                        <a id="btnStars" class="btn btn-default border" href="https://github.com/victor-valencia/bootstrap-iconpicker/stargazers" target="_blank" role="button">
+                        <a id="btnStars" class="btn btn-default border" href="https://github.com/Clinical-Support-Systems/bootstrap-iconpicker/stargazers" target="_blank" role="button">
                             &nbsp;
                         </a>
                     </div>
                     <div class="btn-group buttons-menu-container">
-                        <a class="btn btn-default bg-gray border" href="https://github.com/victor-valencia/bootstrap-iconpicker/fork" target="_blank" role="button">
+                        <a class="btn btn-default bg-gray border" href="https://github.com/Clinical-Support-Systems/bootstrap-iconpicker/fork" target="_blank" role="button">
                             <i class="octicon octicon-repo-forked"></i> Fork
                         </a>
-                        <a id="btnForks" class="btn btn-default border" href="https://github.com/victor-valencia/bootstrap-iconpicker/fork" target="_blank" role="button">
+                        <a id="btnForks" class="btn btn-default border" href="https://github.com/Clinical-Support-Systems/bootstrap-iconpicker/fork" target="_blank" role="button">
                             &nbsp;
                         </a>
                     </div>
                     <div class="btn-group buttons-menu-container">
-                        <a class="btn btn-default bg-gray border" href="https://github.com/victor-valencia/bootstrap-iconpicker/releases" target="_blank" role="button">
+                        <a class="btn btn-default bg-gray border" href="https://github.com/Clinical-Support-Systems/bootstrap-iconpicker/releases" target="_blank" role="button">
                             <i class="octicon octicon-tag"></i> Releases
                         </a>
-                        <a id="btnReleases" class="btn btn-default border" href="https://github.com/victor-valencia/bootstrap-iconpicker/releases" target="_blank" role="button">
+                        <a id="btnReleases" class="btn btn-default border" href="https://github.com/Clinical-Support-Systems/bootstrap-iconpicker/releases" target="_blank" role="button">
                             &nbsp;
                         </a>
                     </div>
                     <div class="btn-group buttons-menu-container">
-                        <a class="btn btn-default bg-gray border" href="https://github.com/victor-valencia/bootstrap-iconpicker/graphs/contributors" target="_blank" role="button">
+                        <a class="btn btn-default bg-gray border" href="https://github.com/Clinical-Support-Systems/bootstrap-iconpicker/graphs/contributors" target="_blank" role="button">
                             <i class="octicon octicon-organization"></i> Contributors
                         </a>
-                        <a id="btnContributors" class="btn btn-default border" href="https://github.com/victor-valencia/bootstrap-iconpicker/graphs/contributors" target="_blank" role="button">
+                        <a id="btnContributors" class="btn btn-default border" href="https://github.com/Clinical-Support-Systems/bootstrap-iconpicker/graphs/contributors" target="_blank" role="button">
                             &nbsp;
                         </a>
                     </div>
@@ -1442,15 +1435,15 @@ and open the template in the editor.
                     $('#formDonate').submit();
                 });
 
-                $.getJSON( "https://api.github.com/repos/victor-valencia/bootstrap-iconpicker", function( data ) {
+                $.getJSON( "https://api.github.com/repos/Clinical-Support-Systems/bootstrap-iconpicker", function( data ) {
                     $('#btnStars').html(data.stargazers_count);
                     $('#btnForks').html(data.forks_count);
                 });
 
-                $.getJSON( "https://api.github.com/repos/victor-valencia/bootstrap-iconpicker/tags", function( data ) {
+                $.getJSON( "https://api.github.com/repos/Clinical-Support-Systems/bootstrap-iconpicker/tags", function( data ) {
                     $('#btnReleases').html(data.length);
 
-                    var url = "https://github.com/victor-valencia/bootstrap-iconpicker/archive/" + data[0].name;
+                    var url = "https://github.com/Clinical-Support-Systems/bootstrap-iconpicker/archive/" + data[0].name;
 
                     $('#btnGithub').html($('#btnGithub').html().replace('{0}', data[0].name));
 
@@ -1461,7 +1454,7 @@ and open the template in the editor.
                     $('#btnDownloadTar').html($('#btnDownloadTar').html().replace('{0}', data[0].name));
                 });
 
-                $.getJSON( "https://api.github.com/repos/victor-valencia/bootstrap-iconpicker/contributors", function( data ) {
+                $.getJSON( "https://api.github.com/repos/Clinical-Support-Systems/bootstrap-iconpicker/contributors", function( data ) {
                     $('#btnContributors').html(data.length);
                 });
 
