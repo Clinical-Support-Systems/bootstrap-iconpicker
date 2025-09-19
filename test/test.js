@@ -144,6 +144,40 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
 
     });
 
+    it('should init with "button" tag and attributes[ class="btn btn-secondary" data-iconset="fontawesome6" data-icon="fas fa-wifi" role="iconpicker" ]', function() {
+
+        var obj = $('#demo_202b');
+
+        var options = obj.data('bs.iconpicker').options;
+
+        assert.equal(obj.length, 1);
+        assert.equal(options.align, 'center');
+        assert.equal(options.arrowClass, 'btn-primary');
+        assert.equal(options.arrowNextIconClass, 'fas fa-arrow-right');
+        assert.equal(options.arrowPrevIconClass, 'fas fa-arrow-left');
+        assert.equal(options.cols, 4);
+        assert.equal(options.footer, true);
+        assert.equal(options.header, true);
+        assert.equal(options.icon, 'fas fa-wifi');
+        assert.equal(options.iconClass, '');
+        assert.equal(options.iconClassFix, '');
+        assert.equal(options.icons.length, 2061);
+        assert.equal(options.iconset, 'fontawesome6');
+        assert.equal(options.iconsetVersion, 'lastest');
+        assert.equal(options.inline, false);
+        assert.equal(options.labelFooter, '{0} - {1} of {2}');
+        assert.equal(options.labelHeader, '{0} / {1}');
+        assert.equal(options.page, 1);
+        assert.equal(options.placement, 'bottom');
+        assert.equal(options.rows, 4);
+        assert.equal(options.search, true);
+        assert.equal(options.searchText, 'Search icon');
+        assert.equal(options.selected, 0);
+        assert.equal(options.selectedClass, 'btn-warning');
+        assert.equal(options.unselectedClass, 'btn-secondary');
+
+    });
+
     it('should init with "button" tag and attributes[ class="btn btn-secondary" data-iconset="weathericon" data-icon="wi-day-rain" role="iconpicker" ]', function() {
 
         var obj = $('#demo_203');
