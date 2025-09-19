@@ -35,8 +35,6 @@
 
 ## References
 - [Live documentation & examples](https://clinical-support-systems.github.io/bootstrap-iconpicker)
-- [Supported iconsets](docs/SUPPORTED.md)
-- [Changelog](docs/CHANGELOG.md)
 
 ---
 For questions, open an issue or consult the README for links to bug report templates and documentation.

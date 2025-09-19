@@ -1,6 +1,6 @@
 /*!========================================================================
  * Iconset: Font Awesome
- * Versions: 7.1.0, 7.1.0_pro
+ * Versions: 7.0.1, 7.0.1_pro
  * https://fontawesome.com/
  * CDN: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/[VERSION]/css/all.min.css
  * ======================================================================== */
@@ -13,7 +13,7 @@
         icons: [],
         allVersions: [
             {
-                version: '7.1.0',
+                version: '7.0.1',
                 icons: [
                               "empty",
                               "fab fa-42-group",
