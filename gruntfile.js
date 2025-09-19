@@ -177,6 +177,26 @@ module.exports = function(grunt) {
     // 'publish' is an alias for 'build' kept for clarity in release scripts
     grunt.registerTask('publish', ['build']);
 
+    // Verification task for Font Awesome 7 icon list
+    grunt.registerTask('verifyFa7', 'Verify Font Awesome 7 free icon coverage', function() {
+        var done = this.async();
+        var spawn = require('child_process').spawn;
+        var args = ['util/verify-fa7.js'];
+        // Allow --fail-on-missing passthrough: grunt verifyFa7:strict
+        if (grunt.option('strict')) {
+            args.push('--fail-on-missing');
+        }
+        var proc = spawn(process.execPath, args, { stdio: 'inherit' });
+        proc.on('close', function(code) {
+            if (code !== 0) {
+                grunt.log.error('Font Awesome 7 verification failed.');
+                return done(false);
+            }
+            grunt.log.ok('Font Awesome 7 verification completed.');
+            done();
+        });
+    });
+
     // Custom clean task to remove temporary build artifacts without external plugin
     grunt.registerTask('cleanTemp', 'Remove temp build artifacts', function() {
         var done = this.async();

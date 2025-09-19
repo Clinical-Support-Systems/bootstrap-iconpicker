@@ -23,6 +23,7 @@
     "mocha": "^3.4.2"
   },
   "scripts": {
-    "browser": "index.html"
+    "browser": "index.html",
+    "verify:fa7": "node util/verify-fa7.js"
   }
 }
