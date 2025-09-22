@@ -1,5 +1,5 @@
-![NPM Version](https://img.shields.io/npm/v/css-bootstrap-iconpicker)
-![Release](https://img.shields.io/github/v/release/clinical-support-systems/bootstrap-iconpicker)
+[![NPM Version](https://img.shields.io/npm/v/css-bootstrap-iconpicker)](https://www.npmjs.com/package/css-bootstrap-iconpicker)
+[![Release](https://img.shields.io/github/v/release/clinical-support-systems/bootstrap-iconpicker)](https://github.com/Clinical-Support-Systems/bootstrap-iconpicker/releases)
 ![Tag](https://img.shields.io/github/v/tag/clinical-support-systems/bootstrap-iconpicker)
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/clinical-support-systems/bootstrap-iconpicker)
 ![GitHub License](https://img.shields.io/github/license/clinical-support-systems/bootstrap-iconpicker)
