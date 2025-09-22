@@ -216,6 +216,24 @@ module.exports = function(grunt) {
         });
     });
 
+    grunt.registerTask('verifyFa5', 'Verify Font Awesome 5 free icon coverage', function() {
+        var done = this.async();
+        var spawn = require('child_process').spawn;
+        var args = ['util/verify-fa5.js'];
+        if (grunt.option('strict')) {
+            args.push('--fail-on-missing');
+        }
+        var proc = spawn(process.execPath, args, { stdio: 'inherit' });
+        proc.on('close', function(code) {
+            if (code !== 0) {
+                grunt.log.error('Font Awesome 5 verification failed.');
+                return done(false);
+            }
+            grunt.log.ok('Font Awesome 5 verification completed.');
+            done();
+        });
+    });
+
     // Custom clean task to remove temporary build artifacts without external plugin
     grunt.registerTask('cleanTemp', 'Remove temp build artifacts', function() {
         var done = this.async();
