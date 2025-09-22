@@ -25,7 +25,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'empty');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, false);
@@ -59,7 +59,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'empty');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, true);
@@ -127,7 +127,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'fas fa-wifi');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, false);
@@ -467,7 +467,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'empty');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, true);
@@ -501,7 +501,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'empty');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, true);
@@ -535,7 +535,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'empty');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, true);
@@ -569,7 +569,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'empty');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, true);
@@ -603,7 +603,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'empty');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, true);
@@ -637,7 +637,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'empty');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, true);
@@ -671,7 +671,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'empty');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, true);
@@ -705,7 +705,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'empty');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, true);
@@ -739,7 +739,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'fas fa-arrow-left');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, false);
@@ -773,7 +773,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'fas fa-arrow-up');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, false);
@@ -807,7 +807,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'fas fa-arrow-down');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, false);
@@ -841,7 +841,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'fas fa-arrow-right');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, false);
@@ -875,7 +875,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'empty');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, true);
@@ -909,7 +909,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'empty');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, true);
@@ -943,7 +943,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'empty');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, false);
@@ -977,7 +977,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'empty');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, false);
@@ -1011,7 +1011,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'empty');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, false);
@@ -1045,7 +1045,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'empty');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, false);
@@ -1079,7 +1079,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'empty');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, false);
@@ -1113,7 +1113,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'empty');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, false);
@@ -1148,7 +1148,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'empty');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, true);
@@ -1201,7 +1201,7 @@ describe('Bootstrp-IconPicker v1.10.0', function() {
         assert.equal(options.icon, 'fas fa-bomb');
         assert.equal(options.iconClass, '');
         assert.equal(options.iconClassFix, '');
-        assert.equal(options.icons.length, 1342);
+        assert.equal(options.icons.length, 1612);
         assert.equal(options.iconset, 'fontawesome5');
         assert.equal(options.iconsetVersion, 'lastest');
         assert.equal(options.inline, true);
