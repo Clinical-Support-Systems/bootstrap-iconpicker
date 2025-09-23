@@ -7,10 +7,14 @@
 # [Bootstrap-Iconpicker v1.13.0]([http://clinical-support-systems.github.io/bootstrap-iconpicker](https://clinical-support-systems.github.io/bootstrap-iconpicker/))
 ![Iconpicker](bootstrap-iconpicker_4x.png)
 
-A simple iconpicker for Bootstrap 3.x and 4.x.
+An (updated) simple iconpicker for Bootstrap 3.x and 4.x.
 
 This project is for [Bootstrap 3.x and 4.x](http://getbootstrap.com/), including Glyphicons in Bootstrap 3.x.
 Other icon fonts thats supports: [Elusive Icons](http://press.codes/downloads/elusive-icons-webfont/), [Font Awesome](http://fontawesome.io/), [Ionicons](http://ionicons.com/), [Map Icons](http://map-icons.com/), [Material Design Icons](http://zavoloklom.github.io/material-design-iconic-font/), [Octicons](https://octicons.github.com/), [Typicons](http://typicons.com), [Weather Icons](http://erikflowers.github.io/weather-icons/), [Flag Icons](http://flag-icon-css.lip.is/).
+
+## Why did we update this?
+
+We needed to update this project because the [original repository](https://github.com/victor-valencia/bootstrap-iconpicker) and is no longer actively maintained. This means that any issues or feature requests will not be addressed, and the project may become outdated as new versions of Bootstrap are released not to mention the need to update the Font Awesome iconset to version 6.x and add support for Font Awesome 5.x and 6.x Pro.
 
 ## Table of contents
 - [Quick start](#quick-start)
