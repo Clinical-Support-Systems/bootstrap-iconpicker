@@ -31,6 +31,10 @@
     "verify:fa7-pro": "node util/verify-fa7-pro.js",
     "verify:fa6-pro": "node util/verify-fa6-pro.js",
     "verify:fa5-pro": "node util/verify-fa5-pro.js",
-    "verify-all": "node util/verify-all.js"
+    "verify-all": "node util/verify-all.js",
+    "strip:fa5": "node util/strip-fa5-svg.js",
+    "strip:fa6": "node util/strip-fa6-svg.js",
+    "strip:fa7": "node util/strip-fa7-svg.js",
+    "strip:all": "npm run strip:fa5 && npm run strip:fa6 && npm run strip:fa7"
   }
 }
