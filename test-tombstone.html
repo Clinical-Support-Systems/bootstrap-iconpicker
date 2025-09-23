@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tombstone Icon Test</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="src/css/bootstrap-iconpicker.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>FontAwesome Tombstone Icon Test</h1>
+        <p>This page tests that the tombstone icon (fa-tombstone) is available in Pro versions.</p>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <h3>FA5 Pro Tombstone Test</h3>
+                <div class="form-group">
+                    <label>Select FA5 Pro Tombstone:</label>
+                    <div role="iconpicker" data-iconset="fontawesome5" data-iconset-version="5.15.4_pro" data-icon="fas fa-tombstone" class="btn btn-secondary"></div>
+                </div>
+                <p>Available styles:</p>
+                <ul>
+                    <li><i class="fas fa-tombstone"></i> fas fa-tombstone</li>
+                    <li><i class="far fa-tombstone"></i> far fa-tombstone</li>
+                    <li><i class="fal fa-tombstone"></i> fal fa-tombstone</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h3>FA6 Pro Tombstone Test</h3>
+                <div class="form-group">
+                    <label>Select FA6 Pro Tombstone:</label>
+                    <div role="iconpicker" data-iconset="fontawesome6" data-iconset-version="6.7.0_pro" data-icon="fat fa-tombstone" class="btn btn-secondary"></div>
+                </div>
+                <p>Available styles:</p>
+                <ul>
+                    <li><i class="fat fa-tombstone"></i> fat fa-tombstone</li>
+                    <li><i class="fal fa-tombstone"></i> fal fa-tombstone</li>
+                    <li><i class="fad fa-tombstone"></i> fad fa-tombstone</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h3>FA7 Pro Tombstone Test</h3>
+                <div class="form-group">
+                    <label>Select FA7 Pro Tombstone:</label>
+                    <div role="iconpicker" data-iconset="fontawesome7" data-iconset-version="7.0.1_pro" data-icon="fat fa-tombstone" class="btn btn-secondary"></div>
+                </div>
+                <p>Available styles:</p>
+                <ul>
+                    <li><i class="fat fa-tombstone"></i> fat fa-tombstone</li>
+                    <li><i class="fal fa-tombstone"></i> fal fa-tombstone</li>
+                    <li><i class="fad fa-tombstone"></i> fad fa-tombstone</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="alert alert-info mt-4">
+            <h4>Test Instructions:</h4>
+            <ol>
+                <li>Click on any of the icon picker buttons above</li>
+                <li>Search for "tombstone" in the search box</li>
+                <li>Verify that tombstone icons appear in the picker</li>
+                <li>Select a tombstone icon to confirm it works</li>
+            </ol>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="dist/js/bootstrap-iconpicker.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('[role="iconpicker"]').iconpicker({
+                search: true,
+                searchText: 'Search icons...'
+            });
+            
+            // Test if tombstone icons are available programmatically
+            console.log('Testing tombstone icon availability...');
+            
+            // Get all iconsets
+            if (typeof $.iconset_fontawesome_5 !== 'undefined') {
+                const fa5ProVersion = $.iconset_fontawesome_5.allVersions.find(v => v.version === '5.15.4_pro');
+                if (fa5ProVersion) {
+                    const hasTombstone = fa5ProVersion.icons.some(icon => icon.includes('tombstone'));
+                    console.log('FA5 Pro has tombstone:', hasTombstone);
+                }
+            }
+            
+            if (typeof $.iconset_fontawesome_6 !== 'undefined') {
+                const fa6ProVersion = $.iconset_fontawesome_6.allVersions.find(v => v.version === '6.7.0_pro');
+                if (fa6ProVersion) {
+                    const hasTombstone = fa6ProVersion.icons.some(icon => icon.includes('tombstone'));
+                    console.log('FA6 Pro has tombstone:', hasTombstone);
+                }
+            }
+            
+            if (typeof $.iconset_fontawesome_7 !== 'undefined') {
+                const fa7ProVersion = $.iconset_fontawesome_7.allVersions.find(v => v.version === '7.0.1_pro');
+                if (fa7ProVersion) {
+                    const hasTombstone = fa7ProVersion.icons.some(icon => icon.includes('tombstone'));
+                    console.log('FA7 Pro has tombstone:', hasTombstone);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
