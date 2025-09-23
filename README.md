@@ -14,7 +14,7 @@ Other icon fonts thats supports: [Elusive Icons](http://press.codes/downloads/el
 
 ## Why did we update this?
 
-We needed to update this project because the [original repository](https://github.com/victor-valencia/bootstrap-iconpicker) and is no longer actively maintained. This means that any issues or feature requests will not be addressed, and the project may become outdated as new versions of Bootstrap are released not to mention the need to update the Font Awesome iconset to version 6.x and add support for Font Awesome 5.x and 6.x Pro.
+We needed to update this project because the [original repository](https://github.com/victor-valencia/bootstrap-iconpicker) is no longer actively maintained. This means that any issues or feature requests will not be addressed, and the project may become outdated as new versions of Bootstrap are released not to mention the need to update the Font Awesome iconset to version 6.x and add support for Font Awesome 5.x and 6.x Pro.
 
 ## Table of contents
 - [Quick start](#quick-start)
