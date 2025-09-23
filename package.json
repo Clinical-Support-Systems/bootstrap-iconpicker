@@ -1,6 +1,6 @@
 {
   "name": "css-bootstrap-iconpicker",
-  "version": "1.12.3",
+  "version": "1.13.0",
   "homepage": "https://clinical-support-systems.github.com/bootstrap-iconpicker",
   "author": {
     "name": "Kori Francis",
@@ -13,13 +13,14 @@
     "url": "https://github.com/Clinical-Support-Systems/bootstrap-iconpicker.git"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-pro": "^7.0.1",
     "chai": "^4.1.0",
     "grunt": "^0.4.0",
+    "grunt-contrib-clean": "^0.1.0",
     "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-cssmin": "^0.12.3",
     "grunt-contrib-uglify": "^0.9.1",
-  "grunt-contrib-watch": "^0.6.1",
-  "grunt-contrib-clean": "^0.1.0",
+    "grunt-contrib-watch": "^0.6.1",
     "mocha": "^3.4.2"
   },
   "scripts": {

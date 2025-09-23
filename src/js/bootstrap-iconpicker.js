@@ -20,7 +20,7 @@
 
     // ICONPICKER VERSION
     // ==============================
-    Iconpicker.VERSION = '1.12.3';
+    Iconpicker.VERSION = '1.13.0';
 
     // ICONPICKER ICONSET_EMPTY
     // ==============================
@@ -490,7 +490,22 @@
                             placement: op.placement
                         }).on('inserted.bs.popover', function() {
                             var el = $this.data('bs.popover');
-                            var tip = ($.fn.bsVersion() === '3.x') ? el.tip() : $(el.getTipElement())
+                            var tip;
+
+                            var bsVersion = $.fn.bsVersion();
+
+                            if (bsVersion === '3.x') {
+                                tip = el.tip();
+                            } else if (bsVersion === '5.x') {
+                                var popoverInstance = bootstrap.Popover.getInstance($this);
+                                tip = $(popoverInstance.getTipElement() || popoverInstance.tip);
+                            } else if (el.getTipElement) {
+                                // Bootstrap 4.x
+                                tip = $(el.getTipElement());
+                            } else {
+                                // Fallback for unknown versions
+                                tip = $();
+                            }
                             tip.addClass('iconpicker-popover');
                         }).on('shown.bs.popover', function () {
                             data.switchPage(op.icon);
