@@ -10933,6 +10933,9 @@
                     'fal fa-toggle-off',
                     'far fa-toggle-on',
                     'fal fa-toggle-on',
+                    'fas fa-tombstone',
+                    'far fa-tombstone',
+                    'fal fa-tombstone',
                     'far fa-toolbox',
                     'fal fa-toolbox',
                     'far fa-tooth',
@@ -15395,8 +15398,11 @@
                               "fat fa-plus",
                               "fat fa-print",
                               "fat fa-star",
+                              "fat fa-tombstone",
                               "fat fa-trash",
-                              "fat fa-user"
+                              "fat fa-user",
+                              "fal fa-tombstone",
+                              "fad fa-tombstone"
                     ]
             }
         ]
@@ -17518,7 +17524,7 @@
                     ]
             },
             {
-                version: '6.7.0_pro',
+                version: '7.0.1_pro',
                 icons: [
                               "empty",
                               "fab fa-42-group",
@@ -18024,6 +18030,7 @@
                               "fad fa-plus",
                               "fad fa-print",
                               "fad fa-star",
+                              "fad fa-tombstone",
                               "fad fa-trash",
                               "fad fa-user",
                               "fal fa-calendar",
@@ -18034,6 +18041,7 @@
                               "fal fa-plus",
                               "fal fa-print",
                               "fal fa-star",
+                              "fal fa-tombstone",
                               "fal fa-trash",
                               "fal fa-user",
                               "far fa-address-book",
@@ -19617,6 +19625,7 @@
                               "fat fa-plus",
                               "fat fa-print",
                               "fat fa-star",
+                              "fat fa-tombstone",
                               "fat fa-trash",
                               "fat fa-user",
                               "fas fa-arrows-to-line",

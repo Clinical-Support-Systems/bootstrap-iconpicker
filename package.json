@@ -26,6 +26,10 @@
     "browser": "index.html",
     "verify:fa7": "node util/verify-fa7.js",
     "verify:fa6": "node util/verify-fa6.js",
-    "verify:fa5": "node util/verify-fa5.js"
+    "verify:fa5": "node util/verify-fa5.js",
+    "verify:fa7-pro": "node util/verify-fa7-pro.js",
+    "verify:fa6-pro": "node util/verify-fa6-pro.js",
+    "verify:fa5-pro": "node util/verify-fa5-pro.js",
+    "verify-all": "node util/verify-all.js"
   }
 }

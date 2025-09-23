@@ -4170,8 +4170,11 @@
                               "fat fa-plus",
                               "fat fa-print",
                               "fat fa-star",
+                              "fat fa-tombstone",
                               "fat fa-trash",
-                              "fat fa-user"
+                              "fat fa-user",
+                              "fal fa-tombstone",
+                              "fad fa-tombstone"
                     ]
             }
         ]
