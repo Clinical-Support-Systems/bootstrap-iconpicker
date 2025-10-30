@@ -1,18 +1,18 @@
 ## Copilot Instructions: bootstrap-iconpicker
 
-Purpose: jQuery/Bootstrap popover-based icon picker plugin (current `Iconpicker.VERSION = 1.13.2`) supporting multiple icon font families with versioned icon lists (FA 4–7, etc.).
+Purpose: jQuery/Bootstrap popover-based icon picker plugin (current `Iconpicker.VERSION = 1.13.3`) supporting multiple icon font families with versioned icon lists (FA 4–7, etc.).
 
 ### Architecture & Data Flow
 1. Core plugin: `src/js/bootstrap-iconpicker.js` defines `$.fn.iconpicker` (initializes on `button[role="iconpicker"], div[role="iconpicker"]`). Buttons use a Bootstrap popover; divs render inline.
-2. Iconset registry: `Iconpicker.ICONSET` pulls objects exposed as `$.iconset_<name>` from loader files in `src/js/iconset/`. Each loader assigns `$.iconset_<name> = data;` where `data` includes `iconClass`, `iconClassFix`, `icons`, and optional `allVersions` array → supports `iconsetVersion` selection (default `'latest'`).
+2. Iconset registry: `Iconpicker.ICONSET` pulls objects exposed as `$.iconset_<name>` from loader files in `src/js/iconset/`. Each loader assigns `$.iconset_<name> = data;` where `data` includes `iconClass`, `iconClassFix`, `icons`, and optional `allVersions` array → supports `iconsetVersion` selection (default `'auto'`).
 3. Rendering cycle: `select()` updates hidden input + <i> tag; pagination/search drive `changeList() → filterIcons() → updateLabels() → updateIcons()`.
 4. Bootstrap version detection via `$.fn.bsVersion()` influences popover destruction method and search input width.
 
 ### Key Conventions
 * Columns must be ≥4; rows ≥0 (rows = 0 shows all). Violations throw early.
-* Role attribute triggers auto init; use `data-iconset`, `data-icon`, `data-iconset-version` for defaults. Custom iconset: pass plain object to `setIconset()`.
+* Role attribute triggers auto init; use `data-iconset` and `data-icon`. Explicit `data-iconset-version` is optional because the default `'auto'` value chooses the newest available list. Custom iconset: pass plain object to `setIconset()`.
 * An "empty" sentinel icon is included as the first entry of most lists.
-* For versioned iconsets (e.g. Font Awesome 6/7) choose a specific version by setting `iconsetVersion` to a value present in `allVersions.version`.
+* For versioned iconsets (e.g. Font Awesome 6/7) choose a specific version by setting `iconsetVersion` to a value present in `allVersions.version`; otherwise leave it on `'auto'` to pick the latest (preferring Pro when detected).
 * Distribution: source (`src/`), temp minified intermediates (`temp/`), final distributables (`dist/`). CDN files are built from `dist/` output.
 
 ### Build & Verification Workflow

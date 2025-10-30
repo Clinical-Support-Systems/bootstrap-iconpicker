@@ -19,7 +19,7 @@
                 <h3>FA7 Pro Tombstone Test</h3>
                 <div class="form-group">
                     <label>Select FA7 Pro Tombstone:</label>
-                    <div role="iconpicker" data-iconset="fontawesome7" data-iconset-version="7.1.0_pro" data-icon="fat fa-tombstone" class="btn btn-secondary"></div>
+                    <div id="fa7-pro-picker" role="iconpicker" data-iconset="fontawesome7" data-icon="fat fa-tombstone" class="btn btn-secondary"></div>
                 </div>
                 <p>Available styles:</p>
                 <ul>
@@ -29,6 +29,10 @@
                     <li><i class="fad fa-tombstone"></i> fad fa-tombstone</li>
                     <li><i class="fas fa-tombstone"></i> fas fa-tombstone</li>
                 </ul>
+                <p class="mt-2">
+                    Resolved version: <code id="fa7-resolved-version">pending...</code><br>
+                    Pro CSS detected: <code id="fa7-has-pro">pending...</code>
+                </p>
             </div>
         </div>
         
@@ -54,30 +58,21 @@
             });
             
             // Test if tombstone icons are available programmatically
-            console.log('Testing tombstone icon availability...');
-            
-            // Get all iconsets
-            if (typeof $.iconset_fontawesome_5 !== 'undefined') {
-                const fa5ProVersion = $.iconset_fontawesome_5.allVersions.find(v => v.version === '5.15.4_pro');
-                if (fa5ProVersion) {
-                    const hasTombstone = fa5ProVersion.icons.some(icon => icon.includes('tombstone'));
-                    console.log('FA5 Pro has tombstone:', hasTombstone);
-                }
-            }
-            
-            if (typeof $.iconset_fontawesome_6 !== 'undefined') {
-                const fa6ProVersion = $.iconset_fontawesome_6.allVersions.find(v => v.version === '6.7.0_pro');
-                if (fa6ProVersion) {
-                    const hasTombstone = fa6ProVersion.icons.some(icon => icon.includes('tombstone'));
-                    console.log('FA6 Pro has tombstone:', hasTombstone);
-                }
-            }
-            
-            if (typeof $.iconset_fontawesome_7 !== 'undefined') {
-                const fa7ProVersion = $.iconset_fontawesome_7.allVersions.find(v => v.version === '7.1.0_pro');
-                if (fa7ProVersion) {
-                    const hasTombstone = fa7ProVersion.icons.some(icon => icon.includes('tombstone'));
-                    console.log('FA7 Pro has tombstone:', hasTombstone);
+            const picker = $('#fa7-pro-picker');
+            const instance = picker.data('bs.iconpicker');
+            if (instance) {
+                const options = instance.options;
+                $('#fa7-resolved-version').text(options.iconsetVersionResolved || '(none)');
+                $('#fa7-has-pro').text(options.iconsetHasPro ? 'yes' : 'no');
+                console.log('Resolved iconset version:', options.iconsetVersionResolved);
+                console.log('Pro CSS detected:', options.iconsetHasPro);
+
+                if (typeof $.iconset_fontawesome_7 !== 'undefined' && Array.isArray($.iconset_fontawesome_7.allVersions)) {
+                    const activeVersion = $.iconset_fontawesome_7.allVersions.find(v => v.version === options.iconsetVersionResolved);
+                    if (activeVersion) {
+                        const hasTombstone = activeVersion.icons.some(icon => icon.indexOf('tombstone') !== -1);
+                        console.log('Selected version exposes tombstone:', hasTombstone);
+                    }
                 }
             }
         });

@@ -24,6 +24,10 @@ A simple iconpicker for Bootstrap 3.x and 4.x.
 - [ ] Support for versions (v3.2.0) of [Flag Icons](http://flag-icon-css.lip.is/).
 
 ## Changelog
+- _Unreleased_
+    - Default `iconsetVersion` option to `'auto'` so Font Awesome pickers upgrade to the newest installed release automatically.
+    - Detect Font Awesome Pro CSS at runtime and surface the resolved version (`options.iconsetVersionResolved`) plus Pro flag (`options.iconsetHasPro`).
+    - Updated demo tombstone picker to verify automatic Pro detection on real pages.
 - [![v1.10.0](http://img.shields.io/badge/zip-v1.10.0-blue.svg)](https://github.com/victor-valencia/bootstrap-iconpicker/archive/v1.10.0.zip). (2018-Oct-10)    
     - Support for [Bootstrap 4.x](http://getbootstrap.com/).
     - Support for multiple versions of [Font Awesome Icons (Free and Pro)](http://fontawesome.io/). (v5.3.1, v5.3.1_pro)

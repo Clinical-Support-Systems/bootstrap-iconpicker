@@ -4,7 +4,7 @@
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/clinical-support-systems/bootstrap-iconpicker)
 ![GitHub License](https://img.shields.io/github/license/clinical-support-systems/bootstrap-iconpicker)
 
-# [Bootstrap-Iconpicker v1.13.2]([http://clinical-support-systems.github.io/bootstrap-iconpicker](https://clinical-support-systems.github.io/bootstrap-iconpicker/))
+# [Bootstrap-Iconpicker v1.13.3]([http://clinical-support-systems.github.io/bootstrap-iconpicker](https://clinical-support-systems.github.io/bootstrap-iconpicker/))
 ![Iconpicker](bootstrap-iconpicker_4x.png)
 
 An (updated) simple iconpicker for Bootstrap 3.x and 4.x.
@@ -47,6 +47,18 @@ npm run verify:iconsets
 ```
 
 Running the command without any local modifications confirms that the checked-in bundles match the metadata. If the script reports they are outdated, rerun the same command without the `--check` flag (see `util/generate-fa-iconset.js`) to regenerate the files before committing.
+
+### Font Awesome version selection
+
+As of v1.13.3 the picker automatically resolves the latest matching Font Awesome list. When you declare `data-iconset="fontawesome6"` or `data-iconset="fontawesome7"` you can omit `data-iconset-version` entirely:
+
+```html
+<button class="btn btn-secondary" role="iconpicker" data-iconset="fontawesome7" data-icon="fat fa-tombstone"></button>
+```
+
+If Font Awesome Pro CSS is present on the page the picker promotes itself to the newest `_pro` release. Otherwise it falls back to the most recent free release. The resolved version is exposed as `options.iconsetVersionResolved` and whether Pro assets were detected appears as `options.iconsetHasPro` on the iconpicker instance.
+
+To pin to a specific bundle (for example to match an older deployment) you can still provide `data-iconset-version="7.0.1"`, or set `iconsetVersion: '7.0.1'` via JavaScript. Passing `'latest'` forces the highest numbered release regardless of tier, while `'auto'` (the default) keeps the adaptive behaviour described above.
 
 ## CDN
 

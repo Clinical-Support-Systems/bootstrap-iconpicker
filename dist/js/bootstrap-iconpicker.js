@@ -1,5 +1,5 @@
 /*!========================================================================
-* File: bootstrap-iconpicker.js v1.13.2 by @victor-valencia
+* File: bootstrap-iconpicker.js v1.13.3 by @victor-valencia
 * https://clinical-support-systems.github.com/bootstrap-iconpicker
 * ========================================================================
 * Copyright 2013-2025 Kori Francis.
@@ -26,7 +26,7 @@
 
     // ICONPICKER VERSION
     // ==============================
-    Iconpicker.VERSION = '1.13.2';
+    Iconpicker.VERSION = '1.13.3';
 
     // ICONPICKER ICONSET_EMPTY
     // ==============================
@@ -55,6 +55,58 @@
         weathericon: $.iconset_weathericon || Iconpicker.ICONSET_EMPTY
     };
 
+    Iconpicker.PRO_ICON_SENTINELS = {
+        fontawesome5: 'fal fa-tombstone',
+        fontawesome6: 'fat fa-tombstone',
+        fontawesome7: 'fat fa-tombstone'
+    };
+
+    $.each(Iconpicker.PRO_ICON_SENTINELS, function(name, sentinel) {
+        if (Iconpicker.ICONSET[name] && typeof Iconpicker.ICONSET[name].proSentinel === 'undefined') {
+            Iconpicker.ICONSET[name].proSentinel = sentinel;
+        }
+    });
+
+    Iconpicker.versionTier = function(entry) {
+        if (!entry || !entry.version) {
+            return 'free';
+        }
+        return (entry.version.indexOf('_pro') !== -1 || entry.version.indexOf('-pro') !== -1) ? 'pro' : 'free';
+    };
+
+    Iconpicker.versionSortKey = function(version) {
+        if (!version) {
+            return '';
+        }
+        var core = version.replace(/[_-](pro|free)$/i, '');
+        var padded = core.split('.').map(function(segment) {
+            return ('000000' + segment).slice(-6);
+        }).join('.');
+        var tier = (version.indexOf('_pro') !== -1 || version.indexOf('-pro') !== -1) ? '1' : '0';
+        return padded + '~' + tier;
+    };
+
+    Iconpicker.pickLatest = function(entries, tier) {
+        if (!$.isArray(entries) || entries.length === 0) {
+            return null;
+        }
+        var filtered = entries.filter(function(entry) {
+            return tier ? Iconpicker.versionTier(entry) === tier : true;
+        });
+        if (filtered.length === 0) {
+            return null;
+        }
+        filtered.sort(function(a, b) {
+            var keyA = Iconpicker.versionSortKey(a.version);
+            var keyB = Iconpicker.versionSortKey(b.version);
+            if (keyA === keyB) {
+                return 0;
+            }
+            return (keyA > keyB) ? -1 : 1;
+        });
+        return filtered[0];
+    };
+
     // ICONPICKER DEFAULTS
     // ==============================
     Iconpicker.DEFAULTS = {
@@ -63,9 +115,9 @@
         arrowNextIconClass: 'fas fa-arrow-right',
         arrowPrevIconClass: 'fas fa-arrow-left',
         cols: 4,
-        icon: '',
-        iconset: 'fontawesome6',
-        iconsetVersion: 'latest',
+    icon: '',
+    iconset: 'fontawesome6',
+    iconsetVersion: 'auto',
         header: true,
         labelHeader: '{0} / {1}',
         footer: true,
@@ -113,19 +165,113 @@
         this.bindEvents();
     };
 
+    Iconpicker.prototype.getIconsetVersion = function(iconset, requested, iconsetName) {
+        var versionRequest = requested || 'auto';
+        if (!iconset || !$.isArray(iconset.allVersions) || iconset.allVersions.length === 0) {
+            if (versionRequest === 'auto') {
+                return 'latest';
+            }
+            return (versionRequest === 'latest') ? 'latest' : versionRequest;
+        }
+
+        if (versionRequest && versionRequest !== 'auto' && versionRequest !== 'latest') {
+            var directMatch = null;
+            $.each(iconset.allVersions, function(_, entry) {
+                if (entry.version === versionRequest) {
+                    directMatch = entry;
+                    return false;
+                }
+            });
+            if (directMatch) {
+                return directMatch.version;
+            }
+            var fallbackAny = Iconpicker.pickLatest(iconset.allVersions);
+            return fallbackAny ? fallbackAny.version : versionRequest;
+        }
+
+        if (versionRequest === 'latest') {
+            var latestAny = Iconpicker.pickLatest(iconset.allVersions);
+            return latestAny ? latestAny.version : 'latest';
+        }
+
+        if (this.iconsetHasPro(iconset, iconsetName)) {
+            var latestPro = Iconpicker.pickLatest(iconset.allVersions, 'pro');
+            if (latestPro) {
+                return latestPro.version;
+            }
+        }
+
+        var latestFree = Iconpicker.pickLatest(iconset.allVersions, 'free') || Iconpicker.pickLatest(iconset.allVersions);
+        return latestFree ? latestFree.version : 'latest';
+    };
+
+    Iconpicker.prototype.iconsetHasPro = function(iconset, iconsetName) {
+        if (!iconset) {
+            return false;
+        }
+        if (typeof iconset._hasProCache !== 'undefined') {
+            return iconset._hasProCache;
+        }
+        var sentinel = iconset.proSentinel;
+        if (!sentinel && iconsetName && Iconpicker.PRO_ICON_SENTINELS[iconsetName]) {
+            sentinel = Iconpicker.PRO_ICON_SENTINELS[iconsetName];
+        }
+        if (!sentinel || typeof document === 'undefined' || !document.body) {
+            iconset._hasProCache = false;
+            return iconset._hasProCache;
+        }
+        var probe = document.createElement('i');
+        probe.className = sentinel;
+        probe.setAttribute('aria-hidden', 'true');
+        probe.style.position = 'absolute';
+        probe.style.opacity = '0';
+        probe.style.pointerEvents = 'none';
+        probe.style.fontSize = '1px';
+        document.body.appendChild(probe);
+        var hasGlyph = false;
+        try {
+            var pseudo = window.getComputedStyle(probe, '::before');
+            if (pseudo && pseudo.content && pseudo.content !== 'none' && pseudo.content !== 'normal') {
+                hasGlyph = true;
+            }
+            else {
+                hasGlyph = (probe.offsetWidth > 0 || probe.offsetHeight > 0);
+            }
+        }
+        catch (err) {
+            hasGlyph = false;
+        }
+        if (probe.parentNode) {
+            probe.parentNode.removeChild(probe);
+        }
+        iconset._hasProCache = hasGlyph;
+        return iconset._hasProCache;
+    };
+
+    Iconpicker.prototype.getIconsForVersion = function(iconset, version) {
+        if (!iconset) {
+            return [];
+        }
+        if (!version || version === 'latest' || !$.isArray(iconset.allVersions) || iconset.allVersions.length === 0) {
+            return iconset.icons || [];
+        }
+        var result = null;
+        $.each(iconset.allVersions, function(_, entry) {
+            if (entry.version === version) {
+                result = entry.icons;
+                return false;
+            }
+        });
+        return result || iconset.icons || [];
+    };
+
     Iconpicker.prototype.filterIcons = function () {
         var op = this.options;
         var search = op.table.find('.search-control').val();
-        var icons = [];
-        if(op.iconsetVersion != 'latest' && typeof Iconpicker.ICONSET[op.iconset].allVersions != 'undefined'){
-            $.each(Iconpicker.ICONSET[op.iconset].allVersions, function(i, v){
-                if(op.iconsetVersion == v.version){
-                    icons = v.icons;
-                }
-            });
-        }
-        else
-            icons = Iconpicker.ICONSET[op.iconset].icons;
+    var iconsetData = Iconpicker.ICONSET[op.iconset] || Iconpicker.ICONSET_EMPTY;
+    op.iconsetVersionResolved = this.getIconsetVersion(iconsetData, op.iconsetVersion, op.iconset);
+    op.iconsetHasPro = this.iconsetHasPro(iconsetData, op.iconset);
+        var icons = this.getIconsForVersion(iconsetData, op.iconsetVersionResolved);
 
         if (search === "") {
             op.icons = icons;
@@ -399,7 +545,9 @@
         else {
             op.iconset = value;
         }
-        op = $.extend(op, Iconpicker.ICONSET[op.iconset]);
+        var iconsetData = Iconpicker.ICONSET[op.iconset];
+        op = $.extend(op, iconsetData);
+        op.iconsetVersionResolved = this.getIconsetVersion(iconsetData, op.iconsetVersion, op.iconset);
         this.reset();
         this.select(op.icon);
     };
