@@ -16,42 +16,18 @@
         
         <div class="row">
             <div class="col-md-4">
-                <h3>FA5 Pro Tombstone Test</h3>
-                <div class="form-group">
-                    <label>Select FA5 Pro Tombstone:</label>
-                    <div role="iconpicker" data-iconset="fontawesome5" data-iconset-version="5.15.4_pro" data-icon="fas fa-tombstone" class="btn btn-secondary"></div>
-                </div>
-                <p>Available styles:</p>
-                <ul>
-                    <li><i class="fas fa-tombstone"></i> fas fa-tombstone</li>
-                    <li><i class="far fa-tombstone"></i> far fa-tombstone</li>
-                    <li><i class="fal fa-tombstone"></i> fal fa-tombstone</li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <h3>FA6 Pro Tombstone Test</h3>
-                <div class="form-group">
-                    <label>Select FA6 Pro Tombstone:</label>
-                    <div role="iconpicker" data-iconset="fontawesome6" data-iconset-version="6.7.0_pro" data-icon="fat fa-tombstone" class="btn btn-secondary"></div>
-                </div>
-                <p>Available styles:</p>
-                <ul>
-                    <li><i class="fat fa-tombstone"></i> fat fa-tombstone</li>
-                    <li><i class="fal fa-tombstone"></i> fal fa-tombstone</li>
-                    <li><i class="fad fa-tombstone"></i> fad fa-tombstone</li>
-                </ul>
-            </div>
-            <div class="col-md-4">
                 <h3>FA7 Pro Tombstone Test</h3>
                 <div class="form-group">
                     <label>Select FA7 Pro Tombstone:</label>
-                    <div role="iconpicker" data-iconset="fontawesome7" data-iconset-version="7.0.1_pro" data-icon="fat fa-tombstone" class="btn btn-secondary"></div>
+                    <div role="iconpicker" data-iconset="fontawesome7" data-iconset-version="7.1.0_pro" data-icon="fat fa-tombstone" class="btn btn-secondary"></div>
                 </div>
                 <p>Available styles:</p>
                 <ul>
                     <li><i class="fat fa-tombstone"></i> fat fa-tombstone</li>
                     <li><i class="fal fa-tombstone"></i> fal fa-tombstone</li>
+                    <li><i class="far fa-tombstone"></i> far fa-tombstone</li>
                     <li><i class="fad fa-tombstone"></i> fad fa-tombstone</li>
+                    <li><i class="fas fa-tombstone"></i> fas fa-tombstone</li>
                 </ul>
             </div>
         </div>
@@ -98,7 +74,7 @@
             }
             
             if (typeof $.iconset_fontawesome_7 !== 'undefined') {
-                const fa7ProVersion = $.iconset_fontawesome_7.allVersions.find(v => v.version === '7.0.1_pro');
+                const fa7ProVersion = $.iconset_fontawesome_7.allVersions.find(v => v.version === '7.1.0_pro');
                 if (fa7ProVersion) {
                     const hasTombstone = fa7ProVersion.icons.some(icon => icon.includes('tombstone'));
                     console.log('FA7 Pro has tombstone:', hasTombstone);

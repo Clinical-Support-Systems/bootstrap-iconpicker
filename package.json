@@ -1,6 +1,6 @@
 {
   "name": "css-bootstrap-iconpicker",
-  "version": "1.13.1",
+  "version": "1.13.2",
   "homepage": "https://clinical-support-systems.github.com/bootstrap-iconpicker",
   "author": {
     "name": "Kori Francis",
@@ -36,6 +36,6 @@
     "strip:fa6": "node util/strip-fa6-svg.js",
     "strip:fa7": "node util/strip-fa7-svg.js",
     "strip:all": "npm run strip:fa5 && npm run strip:fa6 && npm run strip:fa7",
-    "verify:iconsets": "node util/generate-fa-iconset.js --metadata icons-6.7.2.json --out src/js/iconset/iconset-fontawesome-6-all.js --version 6.7.2 --iconset-key fontawesome_6 --check && node util/generate-fa-iconset.js --metadata icons-7.0.1.json --out src/js/iconset/iconset-fontawesome-7-all.js --version 7.0.1 --iconset-key fontawesome_7 --check"
+    "verify:iconsets": "node util/generate-fa-iconset.js --metadata icons-6.7.2.json --out src/js/iconset/iconset-fontawesome-6-all.js --version 6.7.2 --iconset-key fontawesome_6 --check && node util/generate-fa-iconset.js --metadata icons-7.1.0.json --out src/js/iconset/iconset-fontawesome-7-all.js --version 7.1.0 --iconset-key fontawesome_7 --check"
   }
 }

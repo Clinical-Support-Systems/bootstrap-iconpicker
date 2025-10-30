@@ -20,7 +20,7 @@
 
     // ICONPICKER VERSION
     // ==============================
-    Iconpicker.VERSION = '1.13.1';
+    Iconpicker.VERSION = '1.13.2';
 
     // ICONPICKER ICONSET_EMPTY
     // ==============================

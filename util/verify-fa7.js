@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 /*
- * Verification script for Font Awesome 7.0.1 icon list in iconset-fontawesome-7-all.js
+ * Verification script for Font Awesome 7.1.0 icon list in iconset-fontawesome-7-all.js
  * Compares local array against upstream metadata (fa7-icons.json) restricted to FREE styles.
  */
 const fs = require('fs');
 const path = require('path');
+const vm = require('vm');
 
 const META_PATH = path.join(__dirname, 'fa7-icons.json');
 const ICONSET_PATH = path.join(__dirname, '..', 'src', 'js', 'iconset', 'iconset-fontawesome-7-all.js');
@@ -31,43 +32,34 @@ function buildExpected(meta) {
   return expected;
 }
 
+function loadIconsetData() {
+  const code = fs.readFileSync(ICONSET_PATH, 'utf8');
+  const sandbox = { jQuery: function () {}, console };
+  sandbox.jQuery.fn = {};
+  vm.createContext(sandbox);
+  vm.runInContext(code, sandbox);
+  const data = sandbox.jQuery.iconset_fontawesome_7;
+  if (!data || !Array.isArray(data.allVersions)) {
+    throw new Error('Iconset data not found after evaluating iconset file.');
+  }
+  return data;
+}
+
 function extractLocalList() {
-  const js = fs.readFileSync(ICONSET_PATH, 'utf8');
-  // Find the 7.0.1 version block first icons array
-  // We'll locate the start of the 'version: '7.0.1'' block, then find the following 'icons: [' line
-  const versionIdx = js.indexOf("version: '7.0.1'");
-  if (versionIdx === -1) throw new Error('Could not locate version 7.0.1 declaration.');
-  const slice = js.slice(versionIdx);
-  const iconsStart = slice.indexOf('icons:');
-  if (iconsStart === -1) throw new Error('Could not locate icons: key after version 7.0.1');
-  const afterIcons = slice.slice(iconsStart);
-  const bracketStart = afterIcons.indexOf('[');
-  if (bracketStart === -1) throw new Error('No opening [ for icons array');
-  let depth = 0; let i = bracketStart; let endIndex = -1;
-  for (; i < afterIcons.length; i++) {
-    const ch = afterIcons[i];
-    if (ch === '[') depth++;
-    else if (ch === ']') { depth--; if (depth === 0) { endIndex = i; break; } }
+  const data = loadIconsetData();
+  const [latest] = data.allVersions;
+  if (!latest) {
+    throw new Error('No version entries found in Font Awesome 7 iconset.');
   }
-  if (endIndex === -1) throw new Error('Failed to find matching ] for icons array');
-  const arrayBody = afterIcons.slice(bracketStart + 1, endIndex);
-  // Split by lines, extract quoted strings
-  const iconRegex = /"([^"]+)"/g;
-  const local = [];
-  let m;
-  while ((m = iconRegex.exec(arrayBody)) !== null) {
-    const val = m[1];
-    if (val === 'empty') continue; // sentinel
-    local.push(val.trim());
-  }
-  return local;
+  const icons = (latest.icons || []).filter(icon => icon !== 'empty');
+  return { version: latest.version, icons };
 }
 
 function main() {
   const failOnMissing = process.argv.includes('--fail-on-missing');
   const meta = loadMeta();
   const expected = buildExpected(meta);
-  const local = extractLocalList();
+  const { version, icons: local } = extractLocalList();
   const localSet = new Set(local);
 
   const missing = [...expected].filter(x => !localSet.has(x)).sort();
@@ -102,7 +94,7 @@ function main() {
     }
   };
 
-  console.log('Font Awesome 7.0.1 Verification Summary');
+  console.log(`Font Awesome ${version} Verification Summary`);
   console.log(JSON.stringify(summary, null, 2));
 
   if (missing.length) {
