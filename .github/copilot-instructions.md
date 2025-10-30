@@ -1,40 +1,50 @@
-# Copilot Instructions for bootstrap-iconpicker
+## Copilot Instructions: bootstrap-iconpicker
 
-## Project Overview
-- **bootstrap-iconpicker** is a jQuery-based icon picker supporting Bootstrap 3.x/4.x and multiple icon fonts (Elusive, Font Awesome, Ionicons, Map Icons, Material Design, Octicons, Typicons, Weather Icons, Flag Icons, Glyphicons).
-- Main source files are in `src/` (unminified) and `temp/` (minified). Distribution bundles are generated for CDN and npm.
-- Iconsets are modular: each icon font has its own loader in `src/js/iconset/` and is bundled/minified for production.
+Purpose: jQuery/Bootstrap popover-based icon picker plugin (current `Iconpicker.VERSION = 1.13.0`) supporting multiple icon font families with versioned icon lists (FA 4–7, etc.).
 
-## Key Files & Structure
-- `src/js/bootstrap-iconpicker.js`: Core plugin logic.
-- `src/js/iconset/`: Individual iconset loaders (e.g., `iconset-fontawesome-5-all.js`).
-- `src/css/bootstrap-iconpicker.css`: Main styles.
-- `gruntfile.js`: Build automation (minification, bundling).
-- `index.html`, `index_v3x.html`, `test/index.html`: Demo and test pages.
-- `docs/CHANGELOG.md`, `docs/SUPPORTED.md`: Changelog and supported iconsets.
+### Architecture & Data Flow
+1. Core plugin: `src/js/bootstrap-iconpicker.js` defines `$.fn.iconpicker` (initializes on `button[role="iconpicker"], div[role="iconpicker"]`). Buttons use a Bootstrap popover; divs render inline.
+2. Iconset registry: `Iconpicker.ICONSET` pulls objects exposed as `$.iconset_<name>` from loader files in `src/js/iconset/`. Each loader assigns `$.iconset_<name> = data;` where `data` includes `iconClass`, `iconClassFix`, `icons`, and optional `allVersions` array → supports `iconsetVersion` selection (default `'latest'`).
+3. Rendering cycle: `select()` updates hidden input + <i> tag; pagination/search drive `changeList() → filterIcons() → updateLabels() → updateIcons()`.
+4. Bootstrap version detection via `$.fn.bsVersion()` influences popover destruction method and search input width.
 
-## Build & Development Workflow
-- **Build:** Run `grunt` (see `gruntfile.js`) to generate minified assets in `temp/`.
-- **Test:** Open `test/index.html` in a browser for manual testing. No automated test suite is present.
-- **Debug:** Use unminified files in `src/` for debugging. Minified files in `temp/` are for production/CDN.
-- **Release:** Update version in `package.json`, run build, and publish to npm/CDN.
+### Key Conventions
+* Columns must be ≥4; rows ≥0 (rows = 0 shows all). Violations throw early.
+* Role attribute triggers auto init; use `data-iconset`, `data-icon`, `data-iconset-version` for defaults. Custom iconset: pass plain object to `setIconset()`.
+* An "empty" sentinel icon is included as the first entry of most lists.
+* For versioned iconsets (e.g. Font Awesome 6/7) choose a specific version by setting `iconsetVersion` to a value present in `allVersions.version`.
+* Distribution: source (`src/`), temp minified intermediates (`temp/`), final distributables (`dist/`). CDN files are built from `dist/` output.
 
-## Project Conventions
-- **Iconset Integration:** Add new iconsets by creating a loader in `src/js/iconset/` and updating the bundle logic.
-- **Options:** Default options (iconset, classes) are set in the core JS file and documented in the changelog.
-- **Semantic Versioning:** Follows SemVer for releases. See `docs/CHANGELOG.md` for details.
-- **Manual Testing:** Use provided JSFiddle template for bug reports.
+### Build & Verification Workflow
+* Full build: `grunt build` (runs cssmin, uglify main+iconsets, concat all variants, bundle, then removes `temp/`). Output in `dist/`.
+* Watch (dev): `grunt` default task (watch css/js, rebuild pieces).
+* Icon coverage verification (Font Awesome): `grunt verifyFa5|verifyFa6|verifyFa7 [--strict]` calls scripts in `util/` comparing local loader vs JSON metadata (`faX-icons.json`). `--strict` causes task failure on missing icons.
+* Before release: bump version in `package.json` AND `Iconpicker.VERSION`; run `grunt build`; update `docs/CHANGELOG.md`; verify FA lists; ensure test expectations (`test/test.js`) match new version (file currently lags and uses misspelled `'lastest'`).
 
-## External Dependencies
-- **jQuery** and **Bootstrap** (3.x/4.x) are required for plugin operation.
-- Icon font CSS/TTF/WOFF files are in `icon-fonts/` and referenced by iconset loaders.
+### Adding / Updating an Iconset
+1. Create `src/js/iconset/iconset-<myset>-all.js` patterned after existing loaders: IIFE assigning `$.iconset_<myset> = data;`.
+2. If multiple upstream versions: include `allVersions: [{ version: 'X.Y.Z', icons: [...] }, ...]` plus a flattened `icons` array for latest.
+3. Add uglify target + concat entries in `gruntfile.js` (both `uglify.iconset.files` and `concat.iconsetJS/src` & `concat.iconsetJSMin/src`).
+4. Run `grunt build` and confirm new icons appear via demo page `index.html`.
+5. Document in `docs/SUPPORTED.md`.
 
-## Examples
-- To add a new iconset, create `src/js/iconset/iconset-NEWICON-all.js`, update the build process, and document in `docs/SUPPORTED.md`.
-- To debug, edit `src/js/bootstrap-iconpicker.js` and test in `test/index.html`.
+### Debugging & Testing
+* Use `index.html` / `index_v3x.html` for manual Bootstrap 4/3 checks; open `test/index.html` to run Mocha/Chai assertions in browser (no Node test runner configured).
+* Common pitfalls: missing Bootstrap Popover plugin (throws early); mismatch between icon list count assertions in `test/test.js` and updated iconset; forgetting to update version string.
+* To inspect runtime options: `$('#myPicker').data('bs.iconpicker').options`.
 
-## References
-- [Live documentation & examples](https://clinical-support-systems.github.io/bootstrap-iconpicker)
+### External Dependencies
+* Requires jQuery + Bootstrap (3.x–5.x popover). Ensure Font CSS (e.g. Font Awesome) loaded for chosen iconset; loaders themselves only enumerate class names.
+
+### Performance Notes
+* Pagination slices DOM insertion to `rows * cols`; set `rows=0` only for smaller sets or when search narrowed.
+* Search is linear over current version's `icons` array; large FA sets benefit from keeping rows >0.
+
+### Quick Usage Example
+```html
+<button class="btn btn-secondary" role="iconpicker" data-iconset="fontawesome6" data-icon="fas fa-wifi"></button>
+```
+Access selection changes: `$('button[role="iconpicker"]').on('change', e => console.log(e.icon));`
 
 ---
-For questions, open an issue or consult the README for links to bug report templates and documentation.
+Feedback welcome: let us know if any workflow or convention above is unclear or missing so we can refine these instructions.
