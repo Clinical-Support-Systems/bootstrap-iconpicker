@@ -488,7 +488,7 @@
                             content: op.table,
                             container: 'body',
                             placement: op.placement
-                        }).on('inserted.bs.popover', function() {
+                        }).on('inserted.bs.popover', function () {
                             var el = $this.data('bs.popover');
                             var tip;
 
@@ -498,7 +498,12 @@
                                 tip = el.tip();
                             } else if (bsVersion === '5.x') {
                                 var popoverInstance = bootstrap.Popover.getInstance($this);
-                                tip = $(popoverInstance.getTipElement() || popoverInstance.tip);
+                                if (typeof el.getTipElement === 'function') {
+                                    tip = popoverInstance.getTipElement();
+                                }
+                                else {
+                                    tip = popoverInstance.tip;
+                                }
                             } else if (el.getTipElement) {
                                 // Bootstrap 4.x
                                 tip = $(el.getTipElement());
