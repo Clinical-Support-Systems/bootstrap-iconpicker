@@ -6,35 +6,32 @@
 const fs = require('fs');
 const path = require('path');
 
+const vm = require('vm');
 const ICONSET_PATH = path.join(__dirname, '..', 'src', 'js', 'iconset', 'iconset-fontawesome-6-all.js');
 
+function loadIconsetData() {
+  const code = fs.readFileSync(ICONSET_PATH, 'utf8');
+  const sandbox = { jQuery: function () {}, console };
+  sandbox.jQuery.fn = {};
+  vm.createContext(sandbox);
+  vm.runInContext(code, sandbox);
+  const data = sandbox.jQuery.iconset_fontawesome_6;
+  if (!data || !Array.isArray(data.allVersions)) {
+    throw new Error('Iconset data not found after evaluating iconset file.');
+  }
+  return data;
+}
+
 function extractProList() {
-  const js = fs.readFileSync(ICONSET_PATH, 'utf8');
-  const versionIdx = js.indexOf("version: '6.7.0_pro'");
-  if (versionIdx === -1) throw new Error('Could not locate version 6.7.0_pro declaration.');
-  const slice = js.slice(versionIdx);
-  const iconsStart = slice.indexOf('icons:');
-  if (iconsStart === -1) throw new Error('Could not locate icons: key after version 6.7.0_pro');
-  const afterIcons = slice.slice(iconsStart);
-  const bracketStart = afterIcons.indexOf('[');
-  if (bracketStart === -1) throw new Error('No opening [ for icons array');
-  let depth = 0; let i = bracketStart; let endIndex = -1;
-  for (; i < afterIcons.length; i++) {
-    const ch = afterIcons[i];
-    if (ch === '[') depth++;
-    else if (ch === ']') { depth--; if (depth === 0) { endIndex = i; break; } }
+  const data = loadIconsetData();
+  const proEntry = data.allVersions.find(v => typeof v.version === 'string' && v.version.endsWith('_pro'));
+  if (!proEntry) {
+    throw new Error('Could not locate a *_pro version entry in Font Awesome 6 iconset.');
   }
-  if (endIndex === -1) throw new Error('Failed to find matching ] for icons array');
-  const arrayBody = afterIcons.slice(bracketStart + 1, endIndex);
-  const iconRegex = /"([^"]+)"/g;
-  const local = [];
-  let match;
-  while ((match = iconRegex.exec(arrayBody)) !== null) {
-    const val = match[1];
-    if (val === 'empty') continue;
-    local.push(val);
-  }
-  return local;
+  return {
+    version: proEntry.version,
+    icons: (proEntry.icons || []).filter(icon => icon !== 'empty')
+  };
 }
 
 function validateProIcons(icons) {
@@ -71,8 +68,8 @@ function validateProIcons(icons) {
 }
 
 function main() {
-  console.log('Loading FontAwesome 6.7.0 Pro icon list...');
-  const proIcons = extractProList();
+  const { icons: proIcons, version } = extractProList();
+  console.log(`Loading FontAwesome ${version} Pro icon list...`);
   console.log(`Found ${proIcons.length} pro icons`);
   
   const validation = validateProIcons(proIcons);

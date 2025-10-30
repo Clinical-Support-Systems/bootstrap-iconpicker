@@ -1,6 +1,6 @@
 ## Copilot Instructions: bootstrap-iconpicker
 
-Purpose: jQuery/Bootstrap popover-based icon picker plugin (current `Iconpicker.VERSION = 1.13.0`) supporting multiple icon font families with versioned icon lists (FA 4–7, etc.).
+Purpose: jQuery/Bootstrap popover-based icon picker plugin (current `Iconpicker.VERSION = 1.13.1`) supporting multiple icon font families with versioned icon lists (FA 4–7, etc.).
 
 ### Architecture & Data Flow
 1. Core plugin: `src/js/bootstrap-iconpicker.js` defines `$.fn.iconpicker` (initializes on `button[role="iconpicker"], div[role="iconpicker"]`). Buttons use a Bootstrap popover; divs render inline.

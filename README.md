@@ -4,7 +4,7 @@
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/clinical-support-systems/bootstrap-iconpicker)
 ![GitHub License](https://img.shields.io/github/license/clinical-support-systems/bootstrap-iconpicker)
 
-# [Bootstrap-Iconpicker v1.13.0]([http://clinical-support-systems.github.io/bootstrap-iconpicker](https://clinical-support-systems.github.io/bootstrap-iconpicker/))
+# [Bootstrap-Iconpicker v1.13.1]([http://clinical-support-systems.github.io/bootstrap-iconpicker](https://clinical-support-systems.github.io/bootstrap-iconpicker/))
 ![Iconpicker](bootstrap-iconpicker_4x.png)
 
 An (updated) simple iconpicker for Bootstrap 3.x and 4.x.
@@ -37,6 +37,16 @@ Several quick-start options are available:
 - Download the latest release: [![Tag](http://img.shields.io/github/release/Clinical-Support-Systems/bootstrap-iconpicker.svg)](https://github.com/Clinical-Support-Systems/bootstrap-iconpicker/archive/v1.10.0.zip).
 - Clone the repo: `git clone https://github.com/Clinical-Support-Systems/bootstrap-iconpicker.git`.
 - Install with [npm](https://www.npmjs.com): `npm install bootstrap-iconpicker`.
+
+### Maintaining Font Awesome iconsets
+
+The Font Awesome iconset bundles in `src/js/iconset/` are generated from the official metadata. If the upstream JSON files change (for example, when updating to a new Font Awesome release), regenerate and verify the bundles with:
+
+```powershell
+npm run verify:iconsets
+```
+
+Running the command without any local modifications confirms that the checked-in bundles match the metadata. If the script reports they are outdated, rerun the same command without the `--check` flag (see `util/generate-fa-iconset.js`) to regenerate the files before committing.
 
 ## CDN
 
