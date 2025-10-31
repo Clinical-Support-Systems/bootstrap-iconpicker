@@ -7,7 +7,7 @@
 [![Issues](http://img.shields.io/github/issues/victor-valencia/bootstrap-iconpicker.svg)](https://github.com/victor-valencia/bootstrap-iconpicker/issues?q=is%3Aopen)
 [![Issues](http://img.shields.io/badge/license-MIT-red.svg)](https://github.com/victor-valencia/bootstrap-iconpicker/blob/master/LICENSE)
 
-# [Bootstrap-Iconpicker v1.10.0](http://victor-valencia.github.io/bootstrap-iconpicker)
+# [Bootstrap-Iconpicker v1.14.0](http://victor-valencia.github.io/bootstrap-iconpicker)
 ![Iconpicker](../bootstrap-iconpicker_4x.png)
 
 A simple iconpicker for Bootstrap 3.x, 4.x, _and_ 5.x.
