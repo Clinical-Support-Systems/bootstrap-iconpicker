@@ -4,12 +4,12 @@
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/clinical-support-systems/bootstrap-iconpicker)
 ![GitHub License](https://img.shields.io/github/license/clinical-support-systems/bootstrap-iconpicker)
 
-# [Bootstrap-Iconpicker v1.13.3]([http://clinical-support-systems.github.io/bootstrap-iconpicker](https://clinical-support-systems.github.io/bootstrap-iconpicker/))
+# [Bootstrap-Iconpicker v1.14.0]([http://clinical-support-systems.github.io/bootstrap-iconpicker](https://clinical-support-systems.github.io/bootstrap-iconpicker/))
 ![Iconpicker](bootstrap-iconpicker_4x.png)
 
-An (updated) simple iconpicker for Bootstrap 3.x and 4.x.
+An (updated) simple iconpicker for Bootstrap 3.x, 4.x, and 5.x.
 
-This project is for [Bootstrap 3.x and 4.x](http://getbootstrap.com/), including Glyphicons in Bootstrap 3.x.
+This project is for [Bootstrap 3.x, 4.x, and 5.x](http://getbootstrap.com/), including Glyphicons in Bootstrap 3.x. Bootstrap 5 popovers are supported natively without the legacy jQuery plugin wrapper.
 Other icon fonts thats supports: [Elusive Icons](http://press.codes/downloads/elusive-icons-webfont/), [Font Awesome](http://fontawesome.io/), [Ionicons](http://ionicons.com/), [Map Icons](http://map-icons.com/), [Material Design Icons](http://zavoloklom.github.io/material-design-iconic-font/), [Octicons](https://octicons.github.com/), [Typicons](http://typicons.com), [Weather Icons](http://erikflowers.github.io/weather-icons/), [Flag Icons](http://flag-icon-css.lip.is/).
 
 ## Why did we update this?
