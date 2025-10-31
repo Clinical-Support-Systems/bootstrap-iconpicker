@@ -1,5 +1,5 @@
 /*!========================================================================
-* File: bootstrap-iconpicker.js v1.13.3 by @victor-valencia
+* File: bootstrap-iconpicker.js v1.14.0 by @victor-valencia
 * https://clinical-support-systems.github.com/bootstrap-iconpicker
 * ========================================================================
 * Copyright 2013-2025 Kori Francis.
@@ -14,9 +14,7 @@
     // ==============================
     var Iconpicker = function (element, options) {
 
-      if (typeof $.fn.popover === 'undefined' || typeof $.fn.popover.Constructor.VERSION === 'undefined') {
-        throw new TypeError('Bootstrap iconpicker require Bootstrap popover');
-      }
+        Iconpicker.popover.ensure();
 
       this.$element = $(element);
       this.options  = $.extend({}, Iconpicker.DEFAULTS, this.$element.data());
@@ -53,6 +51,171 @@
         octicon: $.iconset_octicon || Iconpicker.ICONSET_EMPTY,
         typicon: $.iconset_typicon || Iconpicker.ICONSET_EMPTY,
         weathericon: $.iconset_weathericon || Iconpicker.ICONSET_EMPTY
+    };
+
+    Iconpicker.bootstrapNamespace = function() {
+        var namespace = null;
+        if (typeof window !== 'undefined' && window.bootstrap) {
+            namespace = window.bootstrap;
+        }
+        else if (typeof bootstrap !== 'undefined') {
+            namespace = bootstrap;
+        }
+        return namespace;
+    };
+
+    Iconpicker.detectBootstrapVersion = function() {
+        if (typeof Iconpicker._detectedBootstrapVersion !== 'undefined' && Iconpicker._detectedBootstrapVersion !== null) {
+            return Iconpicker._detectedBootstrapVersion;
+        }
+        var version = null;
+        if (typeof $.fn.popover !== 'undefined' && $.fn.popover.Constructor && $.fn.popover.Constructor.VERSION) {
+            version = $.fn.popover.Constructor.VERSION;
+        }
+        else {
+            var namespace = Iconpicker.bootstrapNamespace();
+            if (namespace && namespace.Popover && namespace.Popover.VERSION) {
+                version = namespace.Popover.VERSION;
+            }
+            else if (namespace && namespace.Tooltip && namespace.Tooltip.VERSION) {
+                version = namespace.Tooltip.VERSION;
+            }
+        }
+        if (version) {
+            Iconpicker._detectedBootstrapVersion = version;
+        }
+        return version;
+    };
+
+    Iconpicker.bootstrapMajorVersion = function() {
+        var version = Iconpicker.detectBootstrapVersion();
+        if (!version) {
+            return null;
+        }
+        var parts = version.split('.');
+        return parts.length > 0 ? parts[0] : null;
+    };
+
+    Iconpicker.isBootstrap3 = function() {
+        return Iconpicker.bootstrapMajorVersion() === '3';
+    };
+
+    Iconpicker.popover = {
+        hasJquery: function() {
+            return (typeof $.fn.popover === 'function') && !!($.fn.popover.Constructor);
+        },
+        hasNative: function() {
+            var namespace = Iconpicker.bootstrapNamespace();
+            return !!(namespace && typeof namespace.Popover === 'function');
+        },
+        ensure: function() {
+            if (this.hasJquery() || this.hasNative()) {
+                return true;
+            }
+            throw new TypeError('Bootstrap iconpicker require Bootstrap popover');
+        },
+        create: function($element, config) {
+            this.ensure();
+            if (this.hasJquery()) {
+                $element.popover(config);
+                return $element.data('bs.popover');
+            }
+            var namespace = Iconpicker.bootstrapNamespace();
+            if (!namespace || typeof namespace.Popover !== 'function') {
+                return null;
+            }
+            var options = $.extend({}, config);
+            var content = config && config.content;
+            if (content && content.jquery) {
+                content = content[0];
+            }
+            if (options && typeof options.container === 'string' && typeof document !== 'undefined') {
+                var containerCandidate = document.querySelector(options.container);
+                if (containerCandidate) {
+                    options.container = containerCandidate;
+                }
+                else if (options.container === 'body') {
+                    options.container = document.body;
+                }
+            }
+            if (typeof options.content !== 'function') {
+                options.content = function() {
+                    return content;
+                };
+            }
+            if (typeof options.html === 'undefined') {
+                options.html = true;
+            }
+            if (typeof options.sanitize === 'undefined') {
+                options.sanitize = false;
+            }
+            if (typeof options.trigger === 'undefined') {
+                options.trigger = 'manual';
+            }
+            var existing = (typeof namespace.Popover.getInstance === 'function') ? namespace.Popover.getInstance($element[0]) : null;
+            if (existing && typeof existing.dispose === 'function') {
+                existing.dispose();
+            }
+            return new namespace.Popover($element[0], options);
+        },
+        show: function($element) {
+            if (this.hasJquery()) {
+                $element.popover('show');
+                return;
+            }
+            var namespace = Iconpicker.bootstrapNamespace();
+            if (!namespace || typeof namespace.Popover !== 'function') {
+                return;
+            }
+            var instance = (typeof namespace.Popover.getInstance === 'function') ? namespace.Popover.getInstance($element[0]) : null;
+            if (instance && typeof instance.show === 'function') {
+                instance.show();
+                if (typeof instance.update === 'function') {
+                    instance.update();
+                }
+            }
+        },
+        dispose: function($element) {
+            if (this.hasJquery()) {
+                var method = Iconpicker.isBootstrap3() ? 'destroy' : 'dispose';
+                $element.popover(method);
+                return;
+            }
+            var namespace = Iconpicker.bootstrapNamespace();
+            if (!namespace || typeof namespace.Popover !== 'function') {
+                return;
+            }
+            var instance = (typeof namespace.Popover.getInstance === 'function') ? namespace.Popover.getInstance($element[0]) : null;
+            if (instance && typeof instance.dispose === 'function') {
+                instance.dispose();
+            }
+        },
+        getInstance: function($element) {
+            if (this.hasJquery()) {
+                return $element.data('bs.popover');
+            }
+            var namespace = Iconpicker.bootstrapNamespace();
+            if (namespace && typeof namespace.Popover === 'function' && typeof namespace.Popover.getInstance === 'function') {
+                return namespace.Popover.getInstance($element[0]);
+            }
+            return null;
+        },
+        getTipElement: function($element) {
+            var instance = this.getInstance($element);
+            if (!instance) {
+                return $();
+            }
+            if (typeof instance.getTipElement === 'function') {
+                return $(instance.getTipElement());
+            }
+            if (typeof instance.tip === 'function') {
+                return $(instance.tip());
+            }
+            if (instance.tip) {
+                return $(instance.tip);
+            }
+            return $();
+        }
     };
 
     Iconpicker.PRO_ICON_SENTINELS = {
@@ -146,7 +309,7 @@
             e.preventDefault();
             el.select($(this).val());
             if(op.inline === false){
-                el.$element.popover(($.fn.bsVersion() === '3.x') ? 'destroy' : 'dispose');
+                Iconpicker.popover.dispose(el.$element);
             }
             else{
                 op.table.find("i[class$='" + $(this).val() + "']").parent().addClass(op.selectedClass);
@@ -469,7 +632,7 @@
         var search = [
             '<tr>',
             '   <td colspan="' + op.cols + '">',
-            '       <input type="text" class="form-control search-control" style="width: ' + op.cols * (($.fn.bsVersion() === '3.x') ? 39 : 41) + 'px;" placeholder="' + op.searchText + '">',
+            '       <input type="text" class="form-control search-control" style="width: ' + op.cols * (Iconpicker.isBootstrap3() ? 39 : 41) + 'px;" placeholder="' + op.searchText + '">',
             '   </td>',
             '</tr>'
         ];
@@ -631,47 +794,34 @@
                         .append('<i></i>')
                         .append('<input type="hidden" ' + name + '></input>')
                         .append('<span class="caret"></span>')
-                        .addClass('iconpicker ' + (($.fn.bsVersion() === '3.x') ? '' : 'dropdown-toggle'));
+                        .addClass('iconpicker ' + (Iconpicker.isBootstrap3() ? '' : 'dropdown-toggle'));
                     data.setIconset(op.iconset);
                     $this.on('click', function(e) {
                         e.preventDefault();
-                        $this.popover({
+                        var popoverConfig = {
                             animation: false,
                             trigger: 'manual',
                             html: true,
                             content: op.table,
                             container: 'body',
                             placement: op.placement
-                        }).on('inserted.bs.popover', function () {
-                            var el = $this.data('bs.popover');
-                            var tip;
-
-                            var bsVersion = $.fn.bsVersion();
-
-                            if (bsVersion === '3.x') {
-                                tip = el.tip();
-                            } else if (bsVersion === '5.x') {
-                                var popoverInstance = bootstrap.Popover.getInstance($this);
-                                if (typeof el.getTipElement === 'function') {
-                                    tip = popoverInstance.getTipElement();
+                        };
+                        Iconpicker.popover.dispose($this);
+                        Iconpicker.popover.create($this, popoverConfig);
+                        $this.off('inserted.bs.popover.iconpicker')
+                            .on('inserted.bs.popover.iconpicker', function () {
+                                var tip = Iconpicker.popover.getTipElement($this);
+                                if (tip && tip.length) {
+                                    tip.addClass('iconpicker-popover');
                                 }
-                                else {
-                                    tip = popoverInstance.tip;
-                                }
-                            } else if (el.getTipElement) {
-                                // Bootstrap 4.x
-                                tip = $(el.getTipElement());
-                            } else {
-                                // Fallback for unknown versions
-                                tip = $();
-                            }
-                            tip.addClass('iconpicker-popover');
-                        }).on('shown.bs.popover', function () {
-                            data.switchPage(op.icon);
-                            data.bindEvents();
-                        });
+                            });
+                        $this.off('shown.bs.popover.iconpicker')
+                            .on('shown.bs.popover.iconpicker', function () {
+                                data.switchPage(op.icon);
+                                data.bindEvents();
+                            });
                         //console.log($.fn.bsVersion());
-                        $this.popover('show');
+                        Iconpicker.popover.show($this);
                     });
                 }
                 else{
@@ -700,7 +850,8 @@
     };
 
     $.fn.bsVersion = function() {
-        return $.fn.popover.Constructor.VERSION.substr(0,2) + 'x';
+        var major = Iconpicker.bootstrapMajorVersion();
+        return major ? major + '.x' : 'unknown';
     };
 
     // ICONPICKER DATA-API
@@ -710,7 +861,7 @@
             //the 'is' for buttons that trigger popups
             //the 'has' for icons within a button that triggers a popup
             if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-                $(this).popover(($.fn.bsVersion() === '3.x') ? 'destroy' : 'dispose');
+                Iconpicker.popover.dispose($(this));
             }
         });
     });

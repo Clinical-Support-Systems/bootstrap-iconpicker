@@ -1,5 +1,5 @@
 /*!========================================================================
-* File: bootstrap-iconpicker-iconset.js v1.13.3 by @victor-valencia
+* File: bootstrap-iconpicker-iconset.js v1.14.0 by @victor-valencia
 * https://clinical-support-systems.github.com/bootstrap-iconpicker
 * ========================================================================
 * Copyright 2013-2025 Kori Francis.
